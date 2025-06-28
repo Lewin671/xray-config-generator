@@ -31,6 +31,33 @@
         "proxyIPs": []
     },
     "proxyOutBound": {
-        // fill in the proxy outbound here
+        "protocol": "vless",
+        "settings": {
+            "vnext": [
+                {
+                    "address": "example.com",
+                    "port": 443,
+                    "users": [
+                        {
+                            "id": "test-uuid",
+                            "encryption": "none",
+                            "flow": "xtls-rprx-vision"
+                        }
+                    ]
+                }
+            ]
+        },
+        "streamSettings": {
+            "network": "tcp",
+            "security": "reality",
+            "realitySettings": {
+                "show": false,
+                "fingerprint": "chrome",
+                "serverName": "example.com",
+                "publicKey": "test-public-key",
+                "shortId": "test-short-id",
+                "spiderX": "test-spider-x"
+            }
+        }
     }
 }

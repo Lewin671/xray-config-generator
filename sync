@@ -1,2 +1,10 @@
 node ./generate_config.js
-scp ./config.jsonc root@192.168.7.1:/etc/custom-xray/config.jsonc
+
+# 检查 build/config.jsonc 文件是否存在
+if [ -f "./build/config.jsonc" ]; then
+  scp ./build/config.jsonc root@192.168.7.1:/etc/custom-xray/config.jsonc
+  echo "配置文件已同步"
+else
+  echo "错误：build/config.jsonc 文件不存在"
+  exit 1
+fi

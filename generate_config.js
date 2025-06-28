@@ -136,7 +136,7 @@ function updateXrayConfig () {
   const newConfig = updateConfigWithDomainRules(templateConfig, configData.routingRules)
 
   // 添加代理出站配置
-  if (configData.proxyOutBound && Object.keys(configData.proxyOutBound).length > 0) {
+  if (configData.proxyOutBound) {
     // 找到 outbounds 数组
     const proxyOutboundIndex = newConfig.outbounds.findIndex(outbound => outbound.tag === 'proxy')
     if (proxyOutboundIndex >= 0) {
@@ -153,11 +153,11 @@ function updateXrayConfig () {
       })
     }
   } else {
-    console.warn('警告: proxyOutBound 配置为空或不存在，请在 config.jsonc 中添加代理出站配置。')
+    console.warn('警告: proxyOutBound 配置不存在，请在 config.jsonc 中添加代理出站配置。')
     
     // 移除任何空的 proxy 出站配置
     const proxyOutboundIndex = newConfig.outbounds.findIndex(outbound => 
-      outbound.tag === 'proxy' && Object.keys(outbound).length <= 1)
+      outbound.tag === 'proxy')
     if (proxyOutboundIndex >= 0) {
       newConfig.outbounds.splice(proxyOutboundIndex, 1)
     }
