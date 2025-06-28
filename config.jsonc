@@ -1,0 +1,36 @@
+{
+    "routingRules": {
+        "proxyDomains": [
+            "dnsleaktest.com",
+            "browserleaks.com",
+            "spotify.com"
+            // "geosite:geolocation-!cn"
+        ],
+        "directDomains": [
+            "qingyingliu.top",
+            // 小米
+            "mi.com",
+            "xiaomi.com",
+            "xiaomi.cn",
+            "mi.cn",
+            "miui.com",
+            "miliao.com",
+            "miwifi.com",
+            "redmi.cn",
+            "redmi.com.cn",
+            "shouji.cn",
+            "mijia.com",
+            "mijia.cn",
+            "sunsetbot.top",
+            "geosite:cn"
+        ],
+        "directIPs": [
+            "geoip:cn",
+            "geoip:private"
+        ],
+        "proxyIPs": []
+    },
+    "proxyOutBound": {
+        // fill in the proxy outbound here
+    }
+}

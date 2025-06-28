@@ -1,0 +1,89 @@
+{
+    "log": {
+        "loglevel": "none",
+        "error": "none",
+        "access": "/etc/custom-xray/log/access.log",
+        "dnsLog": false
+    },
+    "dns": {
+        "servers": [
+            {
+                "address": "127.0.0.1",
+                "port": 5335,
+                "skipFallback": true
+            },
+            {
+                "address": "127.0.0.1",
+                "port": 25564,
+                "skipFallback": true
+            },
+            {
+                "address": "127.0.0.1",
+                "port": 5335,
+                "skipFallback": false
+            }
+        ],
+        "queryStrategy": "UseIPv4",
+        "disableFallbackIfMatch": true
+    },
+    "routing": {
+        "domainStrategy": "IPIfNonMatch",
+        "domainMatcher": "hybrid"
+    },
+    "inbounds": [
+        {
+            "port": 10086,
+            "protocol": "socks",
+            "sniffing": {
+                "enabled": true,
+                "destOverride": [
+                    "http",
+                    "tls",
+                    "quic"
+                ]
+            },
+            "settings": {
+                "udp": true,
+                "auth": "noauth"
+            },
+            "listen": "0.0.0.0",
+            "tag": "REALITY-in"
+        },
+        {
+            "port": 10087,
+            "protocol": "dokodemo-door",
+            "listen": "0.0.0.0",
+            "settings": {
+                "address": "2.2.2.2",
+                "port": 53,
+                "network": "udp",
+                "followRedirect": false
+            },
+            "tag": "dns-in"
+        }
+    ],
+    "outbounds": [
+        {
+            "protocol": "dns",
+            "settings": {},
+            "tag": "dns-out"
+        },
+        // you should add your own outbound config with proxy tag here
+        {
+            "streamSettings": {
+                "sockopt": {
+                    "mark": 255
+                }
+            },
+            "settings": {
+                "domainStrategy": "UseIP"
+            },
+            "protocol": "freedom",
+            "tag": "direct"
+        },
+        {
+            "protocol": "blackhole",
+            "tag": "blocked"
+        }
+    ]
+}

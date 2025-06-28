@@ -1,0 +1,2 @@
+node ./generate_config.js
+scp ./config.jsonc root@192.168.7.1:/etc/custom-xray/config.jsonc
