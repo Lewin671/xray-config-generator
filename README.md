@@ -20,12 +20,13 @@ npm install
 
 ### 配置文件说明
 
-项目包含两个主要配置文件：
+项目包含以下主要配置文件：
 
 1. **template.jsonc**: 包含 Xray 的基本配置模板，如日志、入站、出站等基础设置
-2. **config.jsonc**: 包含用户自定义的路由规则和代理出站配置
+2. **config.jsonc.backup**: 包含示例的路由规则和代理出站配置，用于初始配置参考
+3. **config.jsonc**: 最终使用的配置文件，包含用户自定义的路由规则和代理出站配置
 
-#### config.jsonc 结构
+#### 配置文件结构
 
 ```jsonc
 {
@@ -41,9 +42,11 @@ npm install
 }
 ```
 
-### 生成配置
+### 配置步骤
 
-运行以下命令生成配置文件：
+1. 复制 `config.jsonc.backup` 文件并根据自己的需求进行修改
+2. 将修改后的文件重命名为 `config.jsonc`
+3. 运行以下命令生成最终配置文件：
 
 ```bash
 node generate_config.js
@@ -53,9 +56,14 @@ node generate_config.js
 
 ## 配置示例
 
+### 修改配置文件
+
+1. 首先复制 `config.jsonc.backup` 文件作为起点
+2. 根据以下示例修改配置
+
 ### 添加代理出站配置
 
-在 `config.jsonc` 中的 `proxyOutBound` 字段添加你的代理配置，例如：
+在配置文件中的 `proxyOutBound` 字段修改为你的代理配置，例如：
 
 ```jsonc
 "proxyOutBound": {
@@ -92,7 +100,7 @@ node generate_config.js
 
 ### 自定义路由规则
 
-在 `config.jsonc` 中修改 `routingRules` 字段：
+在配置文件中修改 `routingRules` 字段：
 
 ```jsonc
 "routingRules": {
@@ -117,6 +125,8 @@ node generate_config.js
 
 ## 注意事项
 
+- 必须将修改后的配置文件重命名为 `config.jsonc`，否则生成脚本无法正确读取
 - 确保 `proxyOutBound` 配置正确，否则生成的配置文件可能无法正常工作
 - 可以使用 geosite 和 geoip 预定义规则集
 - 配置文件使用 JSONC 格式，支持添加注释
+- 如需重新配置，可以随时参考 `config.jsonc.backup` 文件

@@ -141,3 +141,6 @@ vite.config.ts.timestamp-*
 
 # MacOS
 .DS_Store
+
+# ignore the config file
+config.jsonc
