@@ -3,7 +3,9 @@
         "proxyDomains": [
             "dnsleaktest.com",
             "browserleaks.com",
-            "spotify.com"
+            "spotify.com",
+            "github.com",
+            "google.com"
             // "geosite:geolocation-!cn"
         ],
         "directDomains": [
